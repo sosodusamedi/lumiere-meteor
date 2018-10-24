@@ -3,74 +3,72 @@ import { Meteor } from 'meteor/meteor'
 import { Link } from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data'
 import { Bulbs } from '../api/bulbs.js'
-import UpdateBulb from './UpdateBulb'
-import UpdatingBulb from '../ui/UpdatingBulb'
+import InfoSide from '../ui/InfoSide'
 
 class UserPage extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      bulb: {
+        name: '',
+        phone: '',
+        email: '',
+        location: '',
+        birthday: '',
+        disponibilities: '',
+        interests: [],
+        disinterests: []
+      }
+    }
   }
 
-  removeBulb() {
-    console.log(this.props.bulb._id)
-
-    Meteor.call('bulbs.remove', this.props.bulb._id)
+  componentDidMount = (props) => {
+    this.setState({
+      bulb: {
+        name: this.props.bulb.name,
+        phone: this.props.bulb.phone,
+        email: this.props.bulb.email,
+        location: this.props.bulb.location,
+        birthday: this.props.bulb.birhtday,
+        disponibilities: this.props.bulb.disponibilities,
+        interests: this.props.bulb.interests,
+        disinterests: this.props.bulb.disinterests
+      }
+    })
   }
+
+  handleClick = () => {
+    console.log(this.state.bulb)
+  }
+
+  handleSecondClick = () => {
+    console.log(this.props.bulb)
+  }
+  // interestsList() {
+  //   if(!this.props.bulb.interests) return
+  //   {interests.map((interest, index) =>
+  //     <div key={index}>
+  //       <h6>{interest.name} - {interest.preference}</h6>
+  //       <p>{interest.detail}</p>
+  //     </div>
+  //   )}
+  // }
+
+  // removeBulb() {
+  //   Meteor.call('bulbs.remove', this.props.bulb._id)
+  // }
 
   render() {
-    if (!this.props.ready) {
-      return <div>Loading...</div>
-    } else {
-      const {
-        name,
-        phone,
-        email,
-        location,
-        birthday,
-        disponibilities
-      } = this.props.bulb
       return (
         <div>
           <h1>Welcome on <strong>{name}</strong>'s profile</h1>
-          <ul>
-            <div>
-              <label>Numéro de téléphone :</label>
-              <li>{phone}</li>
-            </div>
-            <div>
-              <label>Adresse Email :</label>
-              <li>{email}</li>
-            </div>
-            <div>
-              <label>Localisation :</label>
-              <li>{location}</li>
-            </div>
-            <div>
-              <label>Date de Naissance :</label>
-              <li>{birthday}</li>
-            </div>
-            <div>
-              <label>Disponibilités :</label>
-              <li>{disponibilities}</li>
-            </div>
-          </ul>
-          <Link to={`/user/${this.props.bulb._id}/update`}>
-              <button>Modifier Utilisateur</button>
-          </Link>
-          <Link to="/">
-            <button onClick={this.removeBulb.bind(this)}>
-              Supprimer Utilisateur
-            </button>
-          </Link>
-          <hr />
-          {/* <UpdatingBulb bulb={this.props.bulb} /> */}
-          <Link to="/">
-            <button>Homepage</button>
-          </Link>
+          {/* <InfoSide bulb={this.state.bulb} /> */}
+          <button onClick={this.handleClick.bind(this)}>check</button>
+          <button onClick={this.handleSecondClick.bind(this)}>check 2</button>
         </div>
       )
     }
-  }
 }
 
 export default withTracker(({ match }) => {

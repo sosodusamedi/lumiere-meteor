@@ -9,7 +9,7 @@ const BulbsList = props => (
     {props.bulbs.map(bulb =>
         <div key={bulb._id}>
           <Link to={`/user/${bulb._id}`} >
-            {bulb.name}
+            {bulb.name} - <small>{bulb.disponibilities}</small>
           </Link>
         </div>
       )

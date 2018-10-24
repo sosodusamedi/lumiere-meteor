@@ -7,6 +7,9 @@ class HomePage extends Component {
     return (
       <div>
         <h1>HomePage</h1>
+        <Link to='/branchement'>
+          <button>Branchement</button>
+        </Link>
         <Link to='/add-user'>
           <button>Ajouter un utilisateur</button>
         </Link>

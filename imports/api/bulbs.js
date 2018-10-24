@@ -17,7 +17,9 @@ Meteor.methods({
     email,
     location,
     birthday,
-    disponibilities
+    disponibilities,
+    interests,
+    disinterests
   ) {
     check(name, String)
     check(phone, String)
@@ -33,6 +35,8 @@ Meteor.methods({
       location,
       birthday,
       disponibilities,
+      interests,
+      disinterests,
       createdAt: new Date()
     })
   },

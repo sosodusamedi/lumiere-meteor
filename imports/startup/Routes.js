@@ -4,7 +4,8 @@ import {
   HomePage,
   UserPage,
   AddUser,
-  UpdateBulb
+  UpdateBulb,
+  Branchement
 } from '/imports/pages'
 
 
@@ -17,6 +18,7 @@ class Routes extends Component {
           <Route exact path="/add-user" component={AddUser} />
           <Route exact path="/user/:id" component={UserPage} />
           <Route exact path="/user/:id/update" component={UpdateBulb} />
+          <Route exact path="/branchement" component={Branchement} />
         </Switch>
       </Router>
     )
